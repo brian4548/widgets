@@ -14,13 +14,13 @@ const Search = () => {
 
     return(
         <div>
-            <div className='ui form'>
+            <form onSubmit={handleSubmit} className='ui form'>
                 <div className='field'>
                     <label>Enter Search Term</label>
-                    <input  value={term} onChange={handleChange}className='input' type='text'></input>
+                    <input  value={term} onChange={handleChange} className='input' type='text'></input>
 
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
