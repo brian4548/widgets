@@ -21,23 +21,27 @@ const Search = () => {
 
       setResults(data.query.search);
 
-      const renderResults = results.map((result) => {
-        return (
-          <div className="item">
-            <div className="content">
-              <div className="header">{result.title}</div>
-              {result.snippet}
-            </div>
-            
-          </div>
-        );
-      });
+      
     };
+
+    
 
     if (term) {
       search();
     }
   }, [term]);
+
+  const renderedResults = results.map((result) => {
+    return (
+      <div className="item">
+        <div className="content">
+          <div className="header">{result.title}</div>
+          {result.snippet}
+        </div>
+        
+      </div>
+    );
+  });
 
   const handleChange = (event) => {
     setTerm(event.target.value);
@@ -56,7 +60,7 @@ const Search = () => {
           ></input>
         </div>
       </div>
-      <div className="ui celled list">{renderResults}</div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };
