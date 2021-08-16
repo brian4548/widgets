@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 
 const Search = () => {
-  const [term, setTerm] = useState('tesla');
+  const [term, setTerm] = useState('');
   const [results, setResults] = useState([]);
 
   console.log(results)
@@ -19,11 +19,13 @@ const Search = () => {
         }
       });
 
-      setResults(data);
+      setResults(data.query.search);
       
     }
 
-    search()
+    if (term){
+      search()
+    }
   }, [term])
 
   const handleChange = (event) => {
