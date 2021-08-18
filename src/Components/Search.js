@@ -22,16 +22,31 @@ const Search = () => {
       setResults(data.query.search);
     };
 
-    if (term) {
-      search();
-    }
+
+
+    setTimeout(() => {
+      if(term){
+        search()
+      }
+    }, 500)
+
+    
+
+
+
+
   }, [term]);
 
   const renderedResults = results.map((result) => {
     return (
       <div key={result.pageid} className="item">
         <div className="right floated content">
-          <a href={`https://en.wikipedia.org?curid=${result.pageid}`} className="ui button">Go</a>
+          <a
+            href={`https://en.wikipedia.org?curid=${result.pageid}`}
+            className="ui button"
+          >
+            Go
+          </a>
         </div>
 
         <div className="content">
