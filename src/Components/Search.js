@@ -24,11 +24,15 @@ const Search = () => {
 
 
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       if(term){
         search()
       }
     }, 500)
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
 
     
 
