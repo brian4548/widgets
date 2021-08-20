@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Search = () => {
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState("Cars");
   const [results, setResults] = useState([]);
 
   console.log(results);
@@ -22,25 +22,24 @@ const Search = () => {
       setResults(data.query.search);
     };
 
+    //If there is a term and no results yet, then immediately search. otherwise search on a 500ms delay.
+    if (term && !results.length) {
+      search();
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (term) {
+          search();
+        }
+      }, 500);
 
-
-    const timeoutId = setTimeout(() => {
-      if(term){
-        search()
-      }
-    }, 500)
-
-    return () => {
-      clearTimeout(timeoutId)
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
-
-    
-
-
-
-
+    //sends request every time the search term changes via characters
   }, [term]);
 
+  //maps over results array and returns a block of JSX
   const renderedResults = results.map((result) => {
     return (
       <div key={result.pageid} className="item">
