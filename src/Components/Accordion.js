@@ -8,6 +8,7 @@ const Accordion = ({ items }) => {
   };
 
   const renderedItems = items.map((item, index) => {
+    //if the index (second built in argument of the map) method is equal to the activeIndex in state when you invoke a click event then set change the className of the jsx
       const active = index === activeIndex ? 'active' : ''
 
     return (
