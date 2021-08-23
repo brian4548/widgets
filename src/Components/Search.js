@@ -30,7 +30,7 @@ const Search = () => {
         if (term) {
           search();
         }
-      }, 500);
+      }, 600);
 
       return () => {
         clearTimeout(timeoutId);
