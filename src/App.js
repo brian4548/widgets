@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "./Components/Accordion";
 import Search from "./Components/Search";
 import Dropdown from "./Components/Dropdown";
@@ -10,7 +10,7 @@ const items = [
   },
   {
     title: "Why use React?",
-    content: "React is a favorite JS framework among engineers"
+    content: "React is a favorite JS framework among engineers",
   },
   {
     title: "Why do you use React?",
@@ -20,23 +20,29 @@ const items = [
 
 const options = [
   {
-    label: 'The Color Red',
-    value: 'red'
+    label: "The Color Red",
+    value: "red",
   },
   {
-    label: 'The Color Green',
-    value: 'green'
+    label: "The Color Green",
+    value: "green",
   },
   {
-    label: 'The Color Blue',
-    value: 'Blue'
-  }
-]
+    label: "The Color Blue",
+    value: "Blue",
+  },
+];
 
 export default () => {
+  const [selected, setSelected] = useState(options[0]);
+
   return (
     <div>
-      <Dropdown options={options}/>
+      <Dropdown
+        selected={selected}
+        onSelectedChange={setSelected}
+        options={options}
+      />
     </div>
   );
 };
