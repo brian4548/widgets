@@ -22,7 +22,15 @@ const Convert = ({ language, text }) => {
     };
 
     
-       doTranslation()
+       const timeoutId = setTimeout(() => {
+           if(text) {
+               doTranslation()
+           }
+       }, 500)
+
+       return () => {
+           clearTimeout(timeoutId)
+       }
   }, [language, text]);
 
   return (
