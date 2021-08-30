@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
+import Convert from "./Convert";
 
 const options = [
   {
@@ -39,6 +40,9 @@ const Translate = () => {
         options={options}
         label="select a language"
       />
+      <hr />
+      <h3>Output</h3>
+      <Convert language={language} text={text}/>
     </div>
   );
 };
