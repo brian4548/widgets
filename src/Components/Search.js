@@ -3,9 +3,20 @@ import axios from "axios";
 
 const Search = () => {
   const [term, setTerm] = useState("Cars");
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [results, setResults] = useState([]);
 
   console.log(results);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [term]);
 
   useEffect(() => {
     const search = async () => {
@@ -15,29 +26,15 @@ const Search = () => {
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: term,
+          srsearch: debouncedTerm,
         },
       });
 
       setResults(data.query.search);
     };
 
-    //If there is a term and no results yet, then immediately search. otherwise search on a 500ms delay.
-    if (term && !results.length) {
-      search();
-    } else {
-      const timeoutId = setTimeout(() => {
-        if (term) {
-          search();
-        }
-      }, 600);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-    //sends request every time the search term changes via characters
-  }, [term, results.length]);
+    search();
+  }, [debouncedTerm]);
 
   //maps over results array and returns a block of JSX
   const renderedResults = results.map((result) => {

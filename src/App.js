@@ -39,7 +39,8 @@ export default () => {
 
   return (
     <div>
-      <Translate />
+      {/* <Translate /> */}
+      <Search />
     </div>
   );
 };
