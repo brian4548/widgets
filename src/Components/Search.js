@@ -7,7 +7,7 @@ const Search = () => {
   const [results, setResults] = useState([]);
 
   console.log(results);
-
+//the first useEffect re-renders every time term changes. it then waits on a delay to set the state of the debouncedTerm using the Term. 
   useEffect(() => {
     const timerId = setTimeout(() => {
       setDebouncedTerm(term);
@@ -17,7 +17,7 @@ const Search = () => {
       clearTimeout(timerId);
     };
   }, [term]);
-
+//the second useEffect re-renders every time debounced term is changed and makes the request.
   useEffect(() => {
     const search = async () => {
       const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
