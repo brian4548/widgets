@@ -37,7 +37,7 @@ const Search = () => {
       };
     }
     //sends request every time the search term changes via characters
-  }, [term]);
+  }, [term, results.length]);
 
   //maps over results array and returns a block of JSX
   const renderedResults = results.map((result) => {
