@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
     return(
-        <div className="ui secondary pointin menu">
+        <div className="ui secondary pointing menu">
             <a href="/" className="item">
                 Accordian
             </a>
