@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Dropdown = ({label, options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
-  const ref = useRef()
+  const ref = useRef();
 
   useEffect(() => {
-    document.body.addEventListener("click", (event) => {
-      if(ref.current.contains(event.target)) {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) {
         return;
       }
       setOpen(false);
-    }, {capture: true});
+    };
+
+    document.body.addEventListener("click", onBodyClick, { capture: true });
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick, {
+        capture: true,
+      });
+    };
   }, []);
 
   const renderedOptions = options.map((option) => {
